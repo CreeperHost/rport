@@ -202,7 +202,7 @@ func (ph *ProcessHandler) parseProcessGroupIDFromStatFile(b []byte) int {
 func procPidStatSplit(b string) []string {
 	line := strings.TrimSpace(b)
 
-	var splitParts = make([]string, 52)
+	var splitParts = make([]string, 104)
 
 	partnum := 0
 	strpos := 0
@@ -244,7 +244,7 @@ func procPidStatSplit(b string) []string {
 		partnum++
 	}
 
-	for ; partnum < 52; partnum++ {
+	for ; partnum < 104; partnum++ {
 		splitParts[partnum] = ""
 	}
 	return splitParts
