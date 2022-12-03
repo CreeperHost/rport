@@ -98,7 +98,8 @@ func (m *Monitor) createMeasurement(ctx context.Context) *models.Measurement {
 	}
 	memStats, err := m.systemInfo.MemoryStats(ctx)
 	if err == nil {
-		newMeasurement.MemoryUsagePercent = memStats.UsedPercent
+		memUsed := memStats.Total - memStats.Available
+		newMeasurement.MemoryUsagePercent = float64(memUsed) / float64(memStats.Total) * 100.0
 	} else {
 		m.logger.Debugf("Cannot measure memory_usage_percent:" + err.Error())
 	}
